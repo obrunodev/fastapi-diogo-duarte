@@ -38,11 +38,14 @@ async def async_converter(from_currency: str, to_currency: str, price: float = 1
     
     exchange_rate = float(data['Realtime Currency Exchange Rate']['5. Exchange Rate'])
 
-    return price * exchange_rate
+    return {to_currency: price * exchange_rate}
 
 
 if __name__ == '__main__':
-    converted_value = sync_converter(from_currency='USD',
+    # converted_value = sync_converter(from_currency='USD',
+    #                                 to_currency='BRL',
+    #                                 price=5.5)
+    converted_value = async_converter(from_currency='USD',
                                     to_currency='BRL',
                                     price=5.5)
     print(converted_value)
